@@ -17,9 +17,9 @@ $('form button').click(function(e){
     let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=" + sol + "&page=" + page + "&api_key=fIrKhkY5B36ErcubUDF2hyBDNw6Sjf6f7PgLe5CD";
 
     $.get(url, function(data){
-        let photo = data.photos;
+        let photos = data.photos;
 
-        console.log(photo);
+        console.log(photos);
         $("#nasa-images img").remove();
 
         for (let photo of photos) {
