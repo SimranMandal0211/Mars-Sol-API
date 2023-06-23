@@ -1,0 +1,32 @@
+var nasaImages = $("#nasa-images");
+var solInput = $("#sol");
+var pageInput = $("#page");
+
+$('form button').click(function(e){
+    e.preventDefault();
+
+    let sol = solInput.val();
+    let page = pageInput.val();
+    console.log(sol, page);
+
+    if(sol === "" || page === ""){
+        alert("Please fill the field");
+        return;
+    }
+
+    let url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=" + sol + "&page=" + page + "&api_key=fIrKhkY5B36ErcubUDF2hyBDNw6Sjf6f7PgLe5CD";
+
+    $.get(url, function(data){
+        let photo = data.photos;
+
+        console.log(photo);
+        $("#nasa-images img").remove();
+
+        for (let photo of photos) {
+            console.log(photo);
+        
+            console.log("hell", photo.img_src, photo.id);
+            nasaImages.append('<img src="' + photo.img_src + '" alt="' + photo.id + '">');
+        }
+    });
+});
